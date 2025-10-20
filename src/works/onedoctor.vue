@@ -76,7 +76,7 @@
           <img src="/works/onedoctor/section03_image01.png" />
           <img src="/works/onedoctor/section03_image02.png" />
           <img src="/works/onedoctor/section03_image03.png" />
-          <img src="/works/onedoctor/section03_image04.png" />
+          <img src="/works/onedoctor/section03_image04.png" class="only-pc" />
           <img src="/works/onedoctor/section03_image05.png" />
         </div>
       </div>
@@ -475,8 +475,66 @@ import WorkContentCommon from "@/views/WorkContentCommon.vue";
   }
 
   @include for-size-max("extra-small") {
-    .section-images {
+    .section-inner {
+      padding: 60px 0;
       // max-width: 200px !important;
+    }
+    .section03 {
+      padding: 0;
+      .section-inner {
+        // align-items: center;
+        // gap: 32px;
+        // .section-texts {
+        //   max-width: 420px;
+        //   min-width: auto;
+        // }
+        .section-images {
+          // margin: 0 20px;
+
+          img {
+            // TODO 고정된 height가 아니라 각각 width를 줘야 함..???
+            height: 22.222dvw;
+          }
+          height: 108.333vw;
+
+          img:nth-of-type(1) {
+            margin-top: 10.556vw;
+            width: 45.556svw;
+            height: auto;
+          }
+          img:nth-of-type(2) {
+            top: 45.167vw;
+            right: auto;
+            margin-left: 52.556vw;
+          }
+          img:nth-of-type(3) {
+            top: 0;
+            left: auto;
+            margin-right: 43.611vw;
+          }
+          img:nth-of-type(5) {
+            bottom: 0;
+            left: auto;
+            margin-right: 46.389vw;
+          }
+        }
+        .section-circles {
+          div:nth-of-type(1) {
+            width: 74.444dvw;
+            height: 74.444dvw;
+            padding-top: 0;
+          }
+          div:nth-of-type(2) {
+            // 734px
+            width: 100vw;
+            height: 100vw;
+            padding-top: 0;
+          }
+          div:nth-of-type(3) {
+            display: none;
+          }
+        }
+      }
     }
   }
 }
