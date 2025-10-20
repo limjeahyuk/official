@@ -16,7 +16,9 @@
             src="/works/onedoctor/section01_icon.png"
             alt=""
           />
-          <p class="section-title">채팅 UI를 활용한 친근감 형성</p>
+          <p class="section-title">
+            채팅 UI를 활용한 <br class="only-mobile" />친근감 형성
+          </p>
           <p class="section-description">
             사용자가 건강기록을 입력하면 의료 전문가와 직접 상담하는듯한 답변이
             제공됩니다.<br />
@@ -25,10 +27,25 @@
           </p>
         </div>
         <div class="section-images">
-          <img src="/works/onedoctor/section01_image01.png" />
-          <img src="/works/onedoctor/section01_image02.png" />
-          <img src="/works/onedoctor/section01_image03.png" />
-          <img src="/works/onedoctor/section01_image04.png" />
+          <img
+            :src="
+              deviceType === 'mobile'
+                ? '/works/onedoctor/section01_image01_mobile.png'
+                : '/works/onedoctor/section01_image01.png'
+            "
+          />
+          <img
+            v-if="deviceType !== 'mobile'"
+            src="/works/onedoctor/section01_image02.png"
+          />
+          <img
+            v-if="deviceType !== 'mobile'"
+            src="/works/onedoctor/section01_image03.png"
+          />
+          <img
+            v-if="deviceType !== 'mobile'"
+            src="/works/onedoctor/section01_image04.png"
+          />
         </div>
       </div>
     </section>
@@ -40,16 +57,29 @@
             src="/works/onedoctor/section02_icon.png"
             alt=""
           />
-          <p class="section-title">등록된 디바이스와의 자동 호환</p>
+          <p class="section-title">
+            등록된 디바이스와의 <br class="only-mobile" />자동 호환
+          </p>
           <p class="section-description">
             사용자가 현재 사용하고 있는 혈압계 · 혈당계를 원닥터 앱과 동기화시켜
-            직접 입력할 필요 없이 블루투스를 이용한 자동 전송 기능을 활용하여
+            직접 입력할 필요 없이 블루투스를 이용한 자동 전송 기능을 활용하여<br
+              class="only-mobile"
+            />
             누구나 쉽게 건강기록 관리가 가능합니다.
           </p>
         </div>
         <div class="section-images">
-          <img src="/works/onedoctor/section02_image01.png" />
-          <img src="/works/onedoctor/section02_image02.png" />
+          <img
+            :src="
+              deviceType === 'mobile'
+                ? '/works/onedoctor/section02_image01_mobile.png'
+                : '/works/onedoctor/section02_image01.png'
+            "
+          />
+          <img
+            v-if="deviceType !== 'mobile'"
+            src="/works/onedoctor/section02_image02.png"
+          />
         </div>
       </div>
     </section>
@@ -61,19 +91,29 @@
             src="/works/onedoctor/section03_icon.png"
             alt=""
           />
-          <p class="section-title">친절하고 따뜻한 UX라이팅</p>
+          <p class="section-title">
+            친절하고 따뜻한 <br class="only-mobile" />
+            UX라이팅
+          </p>
           <p class="section-description">
-            의사선생님과 직접 소통하는듯이 친절하고 따뜻한 말투의 통일된 UX
-            라이팅을 용하여 사용자에게 친근감있게 다가갑니다.
+            의사선생님과 직접 소통하는듯이 <br class="only-mobile" />친절하고
+            따뜻한 말투의 통일된 UX 라이팅을 <br class="only-mobile" />사용하여
+            사용자에게 친근감있게 다가갑니다.
           </p>
         </div>
+        <div class="section-circles">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
         <div class="section-images">
-          <div class="section-circles">
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-          <img src="/works/onedoctor/section03_image01.png" />
+          <img
+            :src="
+              deviceType === 'mobile'
+                ? '/works/onedoctor/section03_image01_mobile.png'
+                : '/works/onedoctor/section03_image01.png'
+            "
+          />
           <img src="/works/onedoctor/section03_image02.png" />
           <img src="/works/onedoctor/section03_image03.png" />
           <img src="/works/onedoctor/section03_image04.png" class="only-pc" />
@@ -85,8 +125,20 @@
   </div>
 </template>
 <script setup>
-import { onMounted, defineProps } from "vue";
+import { ref, onMounted, defineProps } from "vue";
+import MobileDetect from "mobile-detect";
 import WorkContentCommon from "@/views/WorkContentCommon.vue";
+const deviceType = ref("");
+onMounted(() => {
+  const md = new MobileDetect(window.navigator.userAgent);
+  if (md.tablet()) {
+    deviceType.value = "tablet";
+  } else if (md.mobile()) {
+    deviceType.value = "mobile";
+  } else {
+    deviceType.value = "desktop";
+  }
+});
 </script>
 <style lang="scss">
 @import "../assets/scss/response.scss";
@@ -477,7 +529,62 @@ import WorkContentCommon from "@/views/WorkContentCommon.vue";
   @include for-size-max("extra-small") {
     .section-inner {
       padding: 60px 0;
-      // max-width: 200px !important;
+    }
+
+    .section01 {
+      .section-inner {
+        .section-texts {
+        }
+        .section-images {
+          max-width: 73.333vw;
+          margin: 0;
+          padding-inline: 8.889vw;
+
+          img:nth-of-type(1) {
+            max-width: 100%;
+          }
+          img:nth-of-type(2) {
+            max-width: 22.527vw;
+            position: absolute;
+            bottom: 28.667vw;
+            right: 11.111vw;
+          }
+          img:nth-of-type(3) {
+            max-width: 46.97vw;
+            position: absolute;
+            bottom: 4.333vw;
+            left: 0;
+          }
+          img:nth-of-type(4) {
+            max-width: 43.94vw;
+            position: absolute;
+            bottom: -6vw;
+            left: 0;
+          }
+        }
+      }
+    }
+    .section02 {
+      .section-inner {
+        .section-images {
+          max-width: 73.333vw;
+          margin: 0;
+          padding-inline: 8.889vw;
+
+          img:nth-of-type(1) {
+            width: 100%;
+            height: auto;
+            text-align: center;
+          }
+          img:nth-of-type(2) {
+            left: 0;
+            right: 0;
+            max-width: unset;
+            width: calc(100% - 2.222vw);
+            bottom: 6.667vw;
+          }
+        }
+      }
     }
     .section03 {
       padding: 0;
@@ -488,37 +595,47 @@ import WorkContentCommon from "@/views/WorkContentCommon.vue";
         //   max-width: 420px;
         //   min-width: auto;
         // }
+        padding-bottom: 24.444vw;
         .section-images {
-          // margin: 0 20px;
+          max-width: 73.333vw;
+          margin: 0;
+          padding-inline: 8.889vw;
+          height: auto;
+          min-width: unset;
 
           img {
             // TODO 고정된 height가 아니라 각각 width를 줘야 함..???
             height: 22.222dvw;
           }
-          height: 108.333vw;
 
           img:nth-of-type(1) {
             margin-top: 10.556vw;
-            width: 45.556svw;
             height: auto;
           }
           img:nth-of-type(2) {
-            top: 45.167vw;
+            top: 44.167vw;
             right: auto;
-            margin-left: 52.556vw;
+            margin-left: 59.556vw;
           }
           img:nth-of-type(3) {
-            top: 0;
+            top: -1vw;
             left: auto;
             margin-right: 43.611vw;
           }
           img:nth-of-type(5) {
-            bottom: 0;
+            bottom: -10.6vw;
             left: auto;
-            margin-right: 46.389vw;
+            margin-right: 50.389vw;
           }
         }
         .section-circles {
+          top: auto;
+          left: -5.55vw;
+          right: -5.55vw;
+          bottom: 15.556vw;
+          margin: auto;
+          width: 102.222vw;
+          height: 102.222vw;
           div:nth-of-type(1) {
             width: 74.444dvw;
             height: 74.444dvw;
@@ -526,8 +643,8 @@ import WorkContentCommon from "@/views/WorkContentCommon.vue";
           }
           div:nth-of-type(2) {
             // 734px
-            width: 100vw;
-            height: 100vw;
+            width: 102.222vw;
+            height: 102.222vw;
             padding-top: 0;
           }
           div:nth-of-type(3) {
