@@ -283,6 +283,7 @@ const onKeyDownAtHomeView = (event) => {
 };
 
 function startAutoScroll() {
+  console.log('startAutoScroll');
   if (window.autoScrollInterval) {
     clearInterval(window.autoScrollInterval);
   }
@@ -293,8 +294,9 @@ function startAutoScroll() {
     }, 1);
   } else {
     window.autoScrollInterval = setInterval(() => {
-      scrollTo({ top: scrollY + 2 });
-    }, 10);
+      window.scrollBy(0, 2); 
+      // scrollTo({ top: scrollY + 2 });
+    }, 20);
   }
 }
 
