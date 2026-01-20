@@ -294,9 +294,8 @@ function startAutoScroll() {
     }, 1);
   } else {
     window.autoScrollInterval = setInterval(() => {
-      window.scrollBy(0, 2); 
-      // scrollTo({ top: scrollY + 2 });
-    }, 20);
+      window.scrollBy(0, 1.5); 
+    }, 16);
   }
 }
 
